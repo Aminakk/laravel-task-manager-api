@@ -10,7 +10,12 @@ class TaskController extends Controller
     // List all tasks
     public function index()
     {
-        return response()->json(Task::all());
+        $tasks = Task::paginate(5); // 5 items per page
+
+        return response()->json([
+            'success' => true,
+            'data' => $tasks
+        ]);
     }
 
     // View single task
