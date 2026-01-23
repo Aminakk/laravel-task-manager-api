@@ -10,7 +10,11 @@ class TaskController extends Controller
     // List all tasks
     public function index()
     {
-        $tasks = Task::paginate(5); // 5 items per page
+        $query = Task::query();
+        if (request('search')) {
+            $query->where('title', 'like', '%' . request('search') . '%');
+        }
+        $tasks = $query->paginate(5);
 
         return response()->json([
             'success' => true,
