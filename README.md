@@ -1,17 +1,18 @@
-# Laravel Task Manager API
+# JobTrackr — Job Application Tracker API
 
-A simple RESTful API built using **Laravel** and **MariaDB** for managing tasks.  
-This project was created to practice Laravel API development, database migrations, and API integration.
-
+A Laravel REST API for tracking job applications, interview progress, and follow-ups.
+Built to help users manage job hunting efficiently, with secure authentication, filtering, and analytics-ready architecture.
 ---
 
 ## Tech Stack
 
-- PHP 8.2
-- Laravel 11
-- MariaDB (local installation)
-- Eloquent ORM
-- REST API
+| Layer           | Technology      |
+| --------------- | --------------- |
+| Backend         | Laravel 10+     |
+| Auth            | Laravel Sanctum |
+| Database        | MariaDB         |
+| API             | REST            |
+| Version Control | Git + GitHub    |
 
 ---
 
