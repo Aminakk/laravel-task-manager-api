@@ -1,0 +1,50 @@
+<div class="container vh-100">
+  <div class="row h-100 justify-content-center align-items-center">
+    <div class="col-12 col-sm-10 col-md-8 col-lg-4">
+      <div class="card shadow-sm">
+        <div class="card-body p-4">
+            <h2 class="text-center mb-4">Create Account</h2>
+
+            <form (ngSubmit)="onSubmit()" #registerForm="ngForm" class="register">
+
+              <div class="mb-3">
+                <label class="form-label">Name</label>
+                <input type="text" class="form-control" [(ngModel)]="name" placeholder="Enter Name" name="name"/>
+                <div class="text-danger small mt-1"
+                     *ngIf="registerForm.controls['name']?.touched && registerForm.controls['name']?.invalid">
+                  Valid name required
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" [(ngModel)]="email" placeholder="Enter email" name="email" />
+                <div class="text-danger small mt-1"
+                     *ngIf="registerForm.controls['email']?.touched && registerForm.controls['email']?.invalid">
+                  Valid email required
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input type="email" class="form-control" [(ngModel)]="password" placeholder="Enter password" name="password"/>
+                <div class="text-danger small mt-1"
+                     *ngIf="registerForm.controls['password']?.touched && registerForm.controls['password']?.invalid">
+                  Valid password required
+                </div>
+              </div>
+
+              <button class="btn btn-primary w-100 text-white" type="submit" [disabled]="registerForm.invalid || loading">
+                {{ loading ? 'Loading...' : 'Register'}}
+              </button>
+
+              <p style="color:red" *ngIf="errorMessage">
+                {{ errorMessage }}
+              </p>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
