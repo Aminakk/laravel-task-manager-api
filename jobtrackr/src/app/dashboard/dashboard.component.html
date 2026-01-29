@@ -1,1 +1,124 @@
-<p>dashboard works!</p>
+<div class="container py-4">
+
+  <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
+    <div>
+      <h3 class="mb-1">Dashboard</h3>
+      <div class="text-muted">Quick overview of your job pipeline</div>
+    </div>
+
+    <div class="mt-2 mt-sm-0">
+      <button class="btn btn-primary" routerLink="/job-form">+ Add Job</button>
+    </div>
+  </div>
+
+  <!-- KPI Cards -->
+  <div class="row g-3">
+    <div class="col-6 col-lg-2">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="text-muted small">Total</div>
+          <div class="fs-4 fw-semibold">{{ stats.total }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-6 col-lg-2">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="text-muted small">Applied</div>
+          <div class="fs-4 fw-semibold">{{ stats.applied }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-6 col-lg-2">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="text-muted small">Interviewing</div>
+          <div class="fs-4 fw-semibold">{{ stats.interviewing }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-6 col-lg-2">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="text-muted small">Offers</div>
+          <div class="fs-4 fw-semibold">{{ stats.offers }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-6 col-lg-2">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="text-muted small">Rejected</div>
+          <div class="fs-4 fw-semibold">{{ stats.rejected }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-6 col-lg-2">
+      <div class="card border-warning shadow-sm">
+        <div class="card-body">
+          <div class="text-muted small">Follow-ups Due</div>
+          <div class="fs-4 fw-semibold">{{ stats.followupsDue }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Sections -->
+  <div class="row g-3 mt-1">
+
+    <!-- Follow-ups -->
+    <div class="col-12 col-lg-7">
+      <div class="card shadow-sm h-100">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <h5 class="mb-0">Follow-ups</h5>
+            <a class="text-decoration-none small" href="#">View all</a>
+          </div>
+
+          <div *ngIf="followups.length === 0" class="text-muted">
+            No follow-ups due 🎉
+          </div>
+
+          <div *ngFor="let f of followups" class="border rounded p-3 mb-2">
+            <div class="d-flex justify-content-between">
+              <div>
+                <div class="fw-semibold">{{ f.company }}</div>
+                <div class="text-muted small">{{ f.role }} • {{ f.stage }}</div>
+              </div>
+              <div class="text-end">
+                <div class="badge text-bg-warning">{{ f.due }}</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Activity -->
+    <div class="col-12 col-lg-5">
+      <div class="card shadow-sm h-100">
+        <div class="card-body">
+          <h5 class="mb-3">Recent Activity</h5>
+
+          <div *ngIf="recent.length === 0" class="text-muted">
+            No recent activity
+          </div>
+
+          <div *ngFor="let r of recent" class="d-flex justify-content-between py-2 border-bottom">
+            <div>{{ r.text }}</div>
+            <div class="text-muted small">{{ r.time }}</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,120 @@
+<div class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-8">
+
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+          <h3 class="mb-1">Add Job</h3>
+          <div class="text-muted">Track a new application in your pipeline</div>
+        </div>
+
+        <a routerLink="/dashboard" class="btn btn-outline-secondary">
+          Back
+        </a>
+      </div>
+
+      <div class="card shadow-sm">
+        <div class="card-body p-4">
+
+          <form [formGroup]="jobForm" (ngSubmit)="submit()">
+
+            <div class="row g-3">
+
+              <!-- Company -->
+              <div class="col-12 col-md-6">
+                <label class="form-label">Company *</label>
+                <input class="form-control" formControlName="company" placeholder="e.g., Google" />
+                <div class="text-danger small mt-1"
+                     *ngIf="jobForm.controls['company'].touched && jobForm.controls['company'].invalid">
+                  Company is required
+                </div>
+              </div>
+
+              <!-- Role -->
+              <div class="col-12 col-md-6">
+                <label class="form-label">Role *</label>
+                <input class="form-control" formControlName="role" placeholder="e.g., Senior Software Engineer" />
+                <div class="text-danger small mt-1"
+                     *ngIf="jobForm.controls['role'].touched && jobForm.controls['role'].invalid">
+                  Role is required
+                </div>
+              </div>
+
+              <!-- Status -->
+              <div class="col-12 col-md-6">
+                <label class="form-label">Status *</label>
+                <select class="form-select" formControlName="status">
+                  <option *ngFor="let s of statuses" [value]="s.value">{{ s.label }}</option>
+                </select>
+              </div>
+
+              <!-- Location -->
+              <div class="col-12 col-md-6">
+                <label class="form-label">Location</label>
+                <input class="form-control" formControlName="location" placeholder="e.g., Remote / Kochi / Dubai" />
+              </div>
+
+              <!-- Source -->
+              <div class="col-12 col-md-6">
+                <label class="form-label">Source</label>
+                <input class="form-control" formControlName="source" placeholder="LinkedIn, Referral, Careers page..." />
+              </div>
+
+              <!-- Job URL -->
+              <div class="col-12 col-md-6">
+                <label class="form-label">Job URL</label>
+                <input class="form-control" formControlName="jobUrl" placeholder="https://..." />
+              </div>
+
+              <!-- Salary -->
+              <div class="col-12 col-md-6">
+                <label class="form-label">Salary Range</label>
+                <input class="form-control" formControlName="salaryRange" placeholder="e.g., $70k–$90k / 25–35 LPA" />
+              </div>
+
+              <!-- Applied Date -->
+              <div class="col-12 col-md-3">
+                <label class="form-label">Applied Date</label>
+                <input type="date" class="form-control" formControlName="appliedDate" />
+              </div>
+
+              <!-- Next Follow-up -->
+              <div class="col-12 col-md-3">
+                <label class="form-label">Next Follow-up</label>
+                <input type="date" class="form-control" formControlName="nextFollowUpDate" />
+              </div>
+
+              <!-- Notes -->
+              <div class="col-12">
+                <label class="form-label">Notes</label>
+                <textarea class="form-control" rows="4" formControlName="notes"
+                          placeholder="Interview details, recruiter name, next steps..."></textarea>
+              </div>
+
+            </div>
+
+            <div *ngIf="errorMessage" class="alert alert-danger mt-3 mb-0">
+              {{ errorMessage }}
+            </div>
+
+            <div class="d-flex gap-2 mt-4">
+              <button class="btn btn-primary" type="submit" [disabled]="loading">
+                {{ loading ? 'Saving...' : 'Save Job' }}
+              </button>
+
+              <button class="btn btn-outline-secondary" type="button"
+                      [disabled]="loading"
+                      (click)="jobForm.reset({ status: 'applied' })">
+                Reset
+              </button>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
