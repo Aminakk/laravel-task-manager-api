@@ -23,6 +23,10 @@ Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logo
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('tasks', TaskController::class);
 });
-Route::middleware('auth:sanctum')->group(function () {
+/*Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('job-applications', JobApplicationController::class);
-});
+});*/
+Route::middleware('auth:sanctum')->post(
+    '/job-applications',
+    [JobApplicationController::class, 'store']
+);
